@@ -16,13 +16,13 @@ Pada API SecondHand terdapat dua role yaitu User dan Admin, dimana admin mempuny
 ### Inisialisasi Database Pada Docker
 ```bash
 # Aktifkan PostgreSQL pada Docker
-docker run --name postgres15 -p 5433:5432 -e POSTGRES_USER={user} -e POSTGRES_PASSWORD={password} -d postgres:15-alpine
+docker run --name postgres15 -p 5433:5432 -e POSTGRES_USER={username} -e POSTGRES_PASSWORD={password} -d postgres:15-alpine
 
 # Membuat Tabel SecondHand
 docker exec -it postgres15 createdb --username={user} --owner={user} secondhand
 
 # Melakukan Migrasi Database
-migrate -path db/migration -database "postgresql://postgres:rahasia@localhost:5432/secondhand?sslmode=disable" -verbose up
+migrate -path db/migration -database "postgresql://{username}:{password}@localhost:5432/secondhand?sslmode=disable" -verbose up
 ```
 
 ### Mengaktifkan RESTful Web API
