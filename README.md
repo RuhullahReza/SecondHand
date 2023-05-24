@@ -6,6 +6,31 @@ SecondHand Merupakan website e-commerce tempat berjual beli barang bekas, Dimana
 
 Pada API SecondHand terdapat dua role yaitu User dan Admin, dimana admin mempunyai privilege untuk menghapus data produk dan transaksi. selain itu juga Admin dapat menambahkan dan menghapus data kota dan data kategeori.
 
+## Teknologi Yang Digunakan
+![Teknologi Yang Digunakan](./Backend-Stack.png)
+
+## ERD SECOND HAND
+![ERD SECOND HAND](./secondHand-ERD.jpg)
+
+## Cara Menjalankan Aplikasi
+### Inisialisasi Database Pada Docker
+```bash
+# Aktifkan PostgreSQL pada Docker
+docker run --name postgres15 -p 5433:5432 -e POSTGRES_USER={user} -e POSTGRES_PASSWORD={password} -d postgres:15-alpine
+
+# Membuat Tabel SecondHand
+docker exec -it postgres15 createdb --username={user} --owner={user} secondhand
+
+# Melakukan Migrasi Database
+migrate -path db/migration -database "postgresql://postgres:rahasia@localhost:5432/secondhand?sslmode=disable" -verbose up
+```
+
+### Mengaktifkan RESTful Web API
+```bash
+go run .
+```
+
+
 ## Endpoint API
 
 API Second Hand berisi beberapa endpoint yang dibagi dalam beberapa kelompok yaitu :
